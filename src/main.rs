@@ -1,10 +1,7 @@
-use std::fs;
-use std::io;
+use nix::sys::reboot::reboot;
+use nix::sys::reboot;
 
-fn main() -> io::Result<()> {
-
-	let contents: String = fs::read_to_string("/root/.bash_history")?;
-	println!("{}", contents);
-	
+fn main() -> Result<(), nix::Error> {
+	reboot(reboot::RebootMode::RB_POWER_OFF)?;
 	Ok(())
 }
